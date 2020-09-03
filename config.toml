@@ -2,6 +2,37 @@ baseURL = "http://carlolobrano.com/"
 languageCode = "en-us"
 title = "Works for me"
 theme = "anatole"
+summarylength = 10
+enableEmoji = true
+enableRobotsTXT = true
+
+[params]
+title = "Works for me"
+author = "Carlo Lobrano"
+description = "My Blog"
+profilePicture = "img/pic.jpg"
+
+## Social links
+[[params.socialIcons]]
+icon = "fa-linkedin"
+title = "Linkedin"
+url = "https://www.linkedin.com/in/carlolobrano/"
+
+[[params.socialIcons]]
+icon = "fa-github"
+title = "GitHub"
+url = "https://github.com/clobrano"
+
+[[params.socialIcons]]
+icon = "fa-twitter"
+title = "twitter"
+url = "https://twitter.com/carlolobrano"
+
+[[params.socialIcons]]
+icon = "fa-envelope"
+title = "e-mail"
+url = "mailto:c.lobrano@gmail.com"
+
 
 [menu]
 
