@@ -1,7 +1,7 @@
 baseURL = "https://www.carlolobrano.com/"
 languageCode = "en-us"
 title = "Works for me"
-theme = "anatole"
+theme = "hugo-coder"
 summarylength = 10
 enableEmoji = true
 enableRobotsTXT = true
