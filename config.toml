@@ -6,50 +6,66 @@ summarylength = 10
 enableEmoji = true
 enableRobotsTXT = true
 
+paginate = 20
+canonifyurls = true
+
+pygmentsstyle = "bw"
+pygmentscodefences = true
+pygmentscodefencesguesssyntax = true
+
 [params]
 title = "Works for me"
 author = "Carlo Lobrano"
-description = "My Blog"
-profilePicture = "img/pic.jpg"
+info = "Smart developer"
+avatarurl = "img/pic.jpg"
+
+hidecredits = false
+hidecopyright = false
+
+rtl = false
+math = true
+custom_css = []
 
 ## Social links
-[[params.socialIcons]]
-icon = "fa-linkedin"
+[[params.social]]
+icon = "fab fa-linkedin fa-2x"
 title = "Linkedin"
+weight = 1
 url = "https://www.linkedin.com/in/carlolobrano/"
 
-[[params.socialIcons]]
-icon = "fa-github"
+[[params.social]]
+icon = "fab fa-github fa-2x"
 title = "GitHub"
+weight = 2
 url = "https://github.com/clobrano"
 
-[[params.socialIcons]]
-icon = "fa-twitter"
+[[params.social]]
+icon = "fab fa-twitter fa-2x"
 title = "twitter"
+weight = 3
 url = "https://twitter.com/carlolobrano"
 
-[[params.socialIcons]]
-icon = "fa-envelope"
+[[params.social]]
+icon = "fab fa-envelope fa-2x"
 title = "e-mail"
+weight = 4
 url = "mailto:c.lobrano@gmail.com"
 
 
-[menu]
+[[menu.main]]
+name = "Home"
+identifier = "home"
+weight = 100
+url = "/"
 
-  [[menu.main]]
-  name = "Home"
-  identifier = "home"
-  weight = 100
-  url = "/"
+[[menu.main]]
+name = "Posts"
+weight = 200
+identifier = "posts"
+url = "/posts/"
 
-  [[menu.main]]
-  name = "Posts"
-  weight = 200
-  identifier = "posts"
-  url = "/posts/"
-
-  [[menu.main]]
-  name = "About"
-  weight = 300
-  identifier = "about"
-  url = "/about/"
+[[menu.main]]
+name = "About"
+weight = 300
+identifier = "about"
+url = "/about/"
