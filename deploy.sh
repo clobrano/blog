@@ -7,7 +7,7 @@ cat .gitmodules
 ls -l themes
 echo "Init submodules"
 git submodule init
-git submodule update
+git submodule update --force --recursive --init --remote
 echo "---"
 ls -l themes
 ls -l themes/*
