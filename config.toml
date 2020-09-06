@@ -16,7 +16,7 @@ pygmentscodefencesguesssyntax = true
 [params]
 title = "Works for me"
 author = "Carlo Lobrano"
-info = "Smart developer"
+info = "Stories and ideas on SW development and smart tools"
 avatarurl = "img/pic.jpg"
 
 hidecredits = false
