@@ -45,13 +45,6 @@ title = "twitter"
 weight = 3
 url = "https://twitter.com/carlolobrano"
 
-[[params.social]]
-icon = "fab fa-envelope fa-2x"
-title = "e-mail"
-weight = 4
-url = "mailto:c.lobrano@gmail.com"
-
-
 [[menu.main]]
 name = "Home"
 identifier = "home"
