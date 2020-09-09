@@ -1,6 +1,6 @@
 baseURL = "https://www.carlolobrano.com/"
 languageCode = "en-us"
-title = "Works for me"
+title = "IT works, for me."
 theme = "hugo-coder"
 summarylength = 10
 enableEmoji = true
@@ -14,9 +14,9 @@ pygmentscodefences = true
 pygmentscodefencesguesssyntax = true
 
 [params]
-title = "Works for me"
+title = "IT works, for me."
 author = "Carlo Lobrano"
-info = "Stories and ideas on SW development and smart tools"
+info = "Blog about Linux, Open Source and Software development"
 avatarurl = "img/pic.jpg"
 
 hidecredits = false
