@@ -4,51 +4,98 @@ date: 2020-10-26T11:51:15+01:00
 draft: true
 ---
 
-# intro: the problem
+Since the beginning of the Yaru project, three years ago, we always had a little problem: two different places for bug tracing.
 
-[Yaru]() is a Community project lead by a small group of maintainers.
+Our main repository is hosted on [GitHub](https://github.com/ubuntu/yaru), but we also have the [Launchpad](https://launchpad.net/ubuntu/+source/yaru-theme) page taking care of the `yaru-theme` package.
 
-Yaru is a Community project maintained on GitHub, which a package repository on Launchpad.
+I can not stress enough how much I appreciate people that use Yaru and take time to report a problem (even when they report it in a not-so-nice way 😀), but somehow we tend to forget LP, and even if the Ubuntu Desktop team took care of them as well, some bugs had to wait too much for a response from our side.
 
-In the three years since it's start, the Yaru project (born as Communitheme) has always kept its bugs in GitHub.
-
-In the last month in Yaru team we discussed how to solve the problem of multiple bug sources.
-
-In Yaru we had the problem of having 2 different places to look for bugs
-
-Since the beginning of the Yaru project three years ago we always had a little problem: two different places for bug tracing.
-
-Our main repository is hosted on [GitHub](), but we also have the [Launchpad]() page taking care of the yaru-theme.* package.
-
-I can not stress enough how much I appreciate people that use Yaru and take time to report a problem (even when they report it in a not-so-nice way 😀), but somehow we tend to forgot LP, and some bugs had to wait too much time for a response from the Yaru team. The Ubuntu Desktop team took care of them in our behalf, so many thanks to them as well, but a couple of week ago we decided to handle this with our CI.
+A couple of week ago we decided to handle this with our CI.
 
 
+Ideally, our solution would have the following:
 
-two places to look for bugs
+1. Daily checks.
+2. A list of all active bugs Launchpad.
+3. For any new bug found, create a GitHub bug with ID, Title and link to the original report.
 
-ideally, packaging issues in lp, the other in github, but what's the right separation and is the user responsible for chooseing?
+We already have some GitHub Actions to keep track of our upstreams. It's configured to run periodically and automatically create a PR when there is new content we shall import. This configuration looked promising for the first point.
 
-always be thankful for reports, is our responsibility to look for bugs.
+To interact with Launchpad we have [Launchpadlib](https://help.launchpad.net/API/launchpadlib).
 
-moreover, they are just 2 places (except forums)
+> launchpadlib is an open-source Python library that lets you treat the HTTP resources published by Launchpad's web service as Python objects responding to a standard set of commands. With launchpadlib you can integrate your applications into Launchpad without knowing a lot about HTTP client programming.
 
+Playing with this library is pretty fun, and the best way to learn it is through the [listed examples](https://help.launchpad.net/API/Uses). For instance, I must thank [Bughugger](), that showed me the way to get the list of bugs of a given application.
 
-# core: the solution
+```py
+import os
+from launchpadlib.launchpad import Launchpad
 
-github has a CI system which we can use
+HOME = os.path.expanduser("~")
+CACHEDIR = os.path.join(HOME, ".launchpadlib", "cache")
 
-launchpad has a cool python library binding to query data
+lp = Launchpad.login_anonymously(
+    "Yaru LP bug checker", "production", CACHEDIR, version="devel"
+)
 
-it lacks of documentation, but luckily there are (old) project using it, for example: https://launchpad.net/bughugger
+ubuntu = lp.distributions["ubuntu"]
+archive = ubuntu.main_archive
+packages = archive.getPublishedSources(source_name="yaru")
+package = ubuntu.getSourcePackage(name=packages[0].source_package_name)
 
-getting all the bugs.
+bug_tasks = package.searchTasks()
+for task in bug_tasks:
+    print(task)
+```
 
-how to connect with our repo
+I then extracted three data from the task:
+- ID: `task.id`
+- Title: `task.title`
+- Link: `"https://bugs.launchpad.net/ubuntu/+source/yaru-theme/+bug/" + str(task.id)`
 
-let gh action create the bugs for us.
+The third point is actually made of two different steps:
+1. identify new issues
+2. create an issue
+
+Both points have been resolved using [HUB](https://github.com/github/hub).
+
+> hub is a command line tool that wraps git in order to extend it with extra features and commands that make working with GitHub easier.
+
+GitHub provides its own [CLI tool](https://cli.github.com/), which I use on a daily bases, but the point that convinced me to use HUB is the following:
+
+> hub can also be used to make shell scripts that directly interact with the GitHub API.
+
+## Create issues
+
+Let's start from the last step.
+
+Creating an issue with HUB is simple
+
+```sh
+hub issue create -m <title> -m <message> -l Launchpad
+```
+
+Here I used the `-m` flag twice to set the title:
+
+> LP#[ID] [TITLE]
+
+and the body of the issue:
+
+> Reported first on Launchpad at https://bugs.launchpad.net/ubuntu/+source/yaru-theme/+bug/[ID]
+
+then I added a **Launchpad** label (`-l`), which makes bug management easier, and ended up very useful for the next step.
+
+## Create only NEW bugs
+
+HUB can list all the bugs from the repository, but - at the time of writing - Yaru has more than 1.000 bugs (only 44 open 😀), then it takes a while to get them all for parsing. Luckily, HUB can filter by label!
+
+```sh
+hub issue --state all --label Launchpad
+```
+
+Parsing the output is easy with Python, all the rest is just a little glue logic to put all together.
+
 
 # end: the result
 
-we have automatically created issues in gh. We can look for it immediately and respond. The LP bug numbers are decreased?
-
-further improvement: anynymous, we can't operate on LP.
+I am satisfied with the end result. We can be more responsive to our user base requests, and I had fun writing the [python script](https://github.com/ubuntu/yaru/blob/master/.github/lpbugtracker.py), and learned something new of GitHub Action.
