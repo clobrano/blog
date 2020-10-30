@@ -5,7 +5,24 @@ draft: true
 ---
 
 # intro: the problem
-yaru is a community project hosted on GitHub, but our ubuntu package is hosted in Launchpad
+
+[Yaru]() is a Community project lead by a small group of maintainers.
+
+Yaru is a Community project maintained on GitHub, which a package repository on Launchpad.
+
+In the three years since it's start, the Yaru project (born as Communitheme) has always kept its bugs in GitHub.
+
+In the last month in Yaru team we discussed how to solve the problem of multiple bug sources.
+
+In Yaru we had the problem of having 2 different places to look for bugs
+
+Since the beginning of the Yaru project three years ago we always had a little problem: two different places for bug tracing.
+
+Our main repository is hosted on [GitHub](), but we also have the [Launchpad]() page taking care of the yaru-theme.* package.
+
+I can not stress enough how much I appreciate people that use Yaru and take time to report a problem (even when they report it in a not-so-nice way 😀), but somehow we tend to forgot LP, and some bugs had to wait too much time for a response from the Yaru team. The Ubuntu Desktop team took care of them in our behalf, so many thanks to them as well, but a couple of week ago we decided to handle this with our CI.
+
+
 
 two places to look for bugs
 
