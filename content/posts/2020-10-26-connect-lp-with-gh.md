@@ -9,12 +9,16 @@ tags:
 ---
 
 Since the beginning of the Yaru project, three years ago, we always had a little problem: two different places for bug tracing.
-
 Our main repository is hosted on [GitHub](https://github.com/ubuntu/yaru), but we also have the [Launchpad](https://launchpad.net/ubuntu/+source/yaru-theme) page taking care of the `yaru-theme` package.
 
-I can not tress enough how much I appreciate our users that take time to report problems, desires, ideas, but indeed our responsiveness on Launchpad has not been the best so far.
+# TLDR
 
-We shall thank as well the Ubuntu Desktop Team that took care of these bugs.
+Whith [this python script](https://github.com/ubuntu/yaru/blob/master/.github/lpbugtracker.py), and GitHub actions, I mirrored the bugs from one bug tracking system to the other.
+
+
+# The full story
+
+I can not tress enough how much I appreciate our users that take time to report problems, desires, ideas, but indeed our responsiveness on Launchpad has not been the best so far, and we shall thank the Ubuntu Desktop Team that took care of these reports.
 
 A couple of weeks ago, we thought that automatically mirroring Launchpad bugs on our GitHub repository could have been a solution, and we decided to take care of this with our CI.
 
