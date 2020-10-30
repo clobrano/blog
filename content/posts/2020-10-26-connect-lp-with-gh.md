@@ -1,31 +1,36 @@
 ---
 title: "How to use GitHub Actions to connect with Launchpad"
-date: 2020-10-26T11:51:15+01:00
-draft: true
+date: 2020-10-30T11:51:15+01:00
+draft: false
+tags:
+- yaru
+- python
+- CI
 ---
 
 Since the beginning of the Yaru project, three years ago, we always had a little problem: two different places for bug tracing.
 
 Our main repository is hosted on [GitHub](https://github.com/ubuntu/yaru), but we also have the [Launchpad](https://launchpad.net/ubuntu/+source/yaru-theme) page taking care of the `yaru-theme` package.
 
-I can not stress enough how much I appreciate people that use Yaru and take time to report a problem (even when they report it in a not-so-nice way 😀), but somehow we tend to forget LP, and even if the Ubuntu Desktop team took care of them as well, some bugs had to wait too much for a response from our side.
+I can not tress enough how much I appreciate our users that take time to report problems, desires, ideas, but indeed our responsiveness on Launchpad has not been the best so far.
 
-A couple of week ago we decided to handle this with our CI.
+We shall thank as well the Ubuntu Desktop Team that took care of these bugs.
 
+A couple of weeks ago, we thought that automatically mirroring Launchpad bugs on our GitHub repository could have been a solution, and we decided to take care of this with our CI.
 
 Ideally, our solution would have the following:
 
-1. Daily checks.
-2. A list of all active bugs Launchpad.
-3. For any new bug found, create a GitHub bug with ID, Title and link to the original report.
+1. Perform daily checks.
+2. Get the list of all open bugs on Launchpad.
+3. For any **new bug** found, create a GitHub bug with ID, Title and link to the original report.
 
-We already have some GitHub Actions to keep track of our upstreams. It's configured to run periodically and automatically create a PR when there is new content we shall import. This configuration looked promising for the first point.
+We already have some GitHub Actions to keep track of our upstreams. It's configured to run periodically, and create a PR when there is new content we shall take care of. This configuration looked promising for the first point.
 
-To interact with Launchpad we have [Launchpadlib](https://help.launchpad.net/API/launchpadlib).
+launchpad provides [Launchpadlib](https://help.launchpad.net/API/launchpadlib), a nice python library to interact with the servers.
 
 > launchpadlib is an open-source Python library that lets you treat the HTTP resources published by Launchpad's web service as Python objects responding to a standard set of commands. With launchpadlib you can integrate your applications into Launchpad without knowing a lot about HTTP client programming.
 
-Playing with this library is pretty fun, and the best way to learn it is through the [listed examples](https://help.launchpad.net/API/Uses). For instance, I must thank [Bughugger](), that showed me the way to get the list of bugs of a given application.
+Playing with this library was pretty fun, and the best way to learn it was through the [listed examples](https://help.launchpad.net/API/Uses). For instance, I must thank [Bughugger](https://launchpad.net/bughugger), that showed me the way to get the list of bugs of a given application.
 
 ```py
 import os
@@ -48,14 +53,14 @@ for task in bug_tasks:
     print(task)
 ```
 
-I then extracted three data from the task:
+I then extract three field from the task:
 - ID: `task.id`
 - Title: `task.title`
 - Link: `"https://bugs.launchpad.net/ubuntu/+source/yaru-theme/+bug/" + str(task.id)`
 
 The third point is actually made of two different steps:
-1. identify new issues
-2. create an issue
+1. Identify **new** issues.
+2. Create an issue.
 
 Both points have been resolved using [HUB](https://github.com/github/hub).
 
@@ -67,9 +72,7 @@ GitHub provides its own [CLI tool](https://cli.github.com/), which I use on a da
 
 ## Create issues
 
-Let's start from the last step.
-
-Creating an issue with HUB is simple
+Let's start from the last step. Creating an issue with HUB is simple:
 
 ```sh
 hub issue create -m <title> -m <message> -l Launchpad
@@ -87,7 +90,7 @@ then I added a **Launchpad** label (`-l`), which makes bug management easier, an
 
 ## Create only NEW bugs
 
-HUB can list all the bugs from the repository, but - at the time of writing - Yaru has more than 1.000 bugs (only 44 open 😀), then it takes a while to get them all for parsing. Luckily, HUB can filter by label!
+HUB can list all the bugs from the repository, but - at the time of writing - Yaru has more than 1.000 bugs (only 44 open 😀), then it takes a while to get them all at once. Luckily, HUB can filter by label!
 
 ```sh
 hub issue --state all --label Launchpad
@@ -96,6 +99,6 @@ hub issue --state all --label Launchpad
 Parsing the output is easy with Python, all the rest is just a little glue logic to put all together.
 
 
-# end: the result
+# Results
 
-I am satisfied with the end result. We can be more responsive to our user base requests, and I had fun writing the [python script](https://github.com/ubuntu/yaru/blob/master/.github/lpbugtracker.py), and learned something new of GitHub Action.
+I am satisfied with the end result. We can be more responsive to our user base requests now, and I had fun writing the [python script](https://github.com/ubuntu/yaru/blob/master/.github/lpbugtracker.py), and learned something new of GitHub Action.
