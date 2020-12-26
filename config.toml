@@ -1,4 +1,4 @@
-baseURL = "https://www.carlolobrano.com/"
+baseURL = "https://www.blog.carlolobrano.com/"
 languageCode = "en-us"
 title = "IT works, for me."
 theme = "hugo-coder"
@@ -27,7 +27,7 @@ math = true
 custom_css = []
 
 [params.plausibleAnalytics]
-domain = "carlolobrano.com"
+domain = "blog.carlolobrano.com"
 # Default value is plausible.io, overwrite this if you are self-hosting or using a custom domain
 #serverURL = "analytics.example.com"
 
