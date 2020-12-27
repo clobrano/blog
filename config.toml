@@ -1,4 +1,4 @@
-baseURL = "https://www.blog.carlolobrano.com/"
+baseURL = "https://blog.carlolobrano.com/"
 languageCode = "en-us"
 title = "IT works, for me."
 theme = "hugo-coder"
