@@ -1,7 +1,7 @@
 ---
 title: "How to Delete Taskwarrior Recurrent Tasks"
 date: 2021-01-10T15:21:06+01:00
-draft: true
+draft: false
 tags:
 - GTD
 - Taskwarrior
