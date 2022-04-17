@@ -33,20 +33,20 @@ domain = "blog.carlolobrano.com"
 
 ## Social links
 [[params.social]]
-icon = "fab fa-linkedin fa-2x"
-title = "Linkedin"
-weight = 1
+name = "LinkedIn"
+icon = "fa fa-2x fa-linkedin"
+weight = 4
 url = "https://www.linkedin.com/in/carlolobrano/"
 
 [[params.social]]
-icon = "fab fa-github fa-2x"
-title = "GitHub"
-weight = 2
+name = "Github"
+icon = "fa fa-2x fa-github"
+weight = 1
 url = "https://github.com/clobrano"
 
 [[params.social]]
-icon = "fab fa-twitter fa-2x"
-title = "twitter"
+name = "Twitter"
+icon = "fa fa-2x fa-twitter"
 weight = 3
 url = "https://twitter.com/carlolobrano"
 
