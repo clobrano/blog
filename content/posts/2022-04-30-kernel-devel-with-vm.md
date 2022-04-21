@@ -21,18 +21,17 @@ Disclaimer: most of the online material refers to **Debian/Ubuntu machines**. I'
 
 # The full post
 Few months ago I got my very first patch accepted to the Linux Kernel 🎉
+
 Now, the patch itself is so simple that it is not much of interest, however what might help is how I tested it.
 
 The two available approaches are
 - test on real hardware (your machine)
 - test on virtual hardware
 
-I did not want to mess up with my machine, so I decided to look for a virtualization, and the suggested approach from many sources is [QEMU](https://www.qemu.org/).
+I did not want to mess up with my machine, so I decided to look for virtualization, and the approach suggested from most of the sources is [QEMU](https://www.qemu.org/).
 
 But first, how do we get there?
 - [Step 1: install QEMU and create a VM](#step-1-install-qemu-and-create-a-vm)
-	- [Install QEMU](#install-qemu)
-	- [Create the environment](create-the-environment)
 - [Step 2: build and run your Linux Kernel](#step-2-build-and-run-your-linux-kernel)
 - [Step3: Make a change](#step3-make-a-change)
 	- [The first problem](#the-first-problem)
@@ -42,15 +41,16 @@ But first, how do we get there?
 
 ## Step 1: install QEMU and create a VM
 
-### Install QEMU
+Here are the list of packages (for Debian/Ubuntu and OpenSuse) to install
 ```bash
 [ubuntu]   $ sudo apt install qemu-kvm qemu   # there is a snap package too
 [opensuse] $ sudo zipper install qemu-kvm qemu
 ```
 
-### Create the environment
-To run a Linux system we need a kernel (will built it in step 2), and a filesystem.
-The latter can be created with tools like **debootstrap**, but to me it seemed easier to create a "classic" VM with another Linux distro, which provides both Kernel AND filesystem, and then instruct QEMU to use our Kernel instead.
+Now, to run a virtualized Linux system we need a kernel (we will build it in step 2), and a filesystem.
+The latter can be created with tools like **debootstrap**, but to me it seemed easier to split the problem in two phases:
+1. create a "classic" VM with installing another Linux distro, which provides both filesystem AND kernel
+2. instruct QEMU to use our Kernel instead.
 
 In my first attempt I used Ubuntu. The advantage was that I know it very well and it has a "minimal" install with a very small footprint compared with other distros. For this same reason, however, this time I want to try [Alpine Linux](https://alpinelinux.org/downloads/), a lightweight distribution often used in containers.
 
@@ -70,7 +70,7 @@ $ qemu-system-x86_64 -cdrom alpine-downloaded.iso alpine.img -m 512M -enable-kvm
 $ qemu-system-x86_64 -enable-kvm -m 512M -smp 4 -cpu host -driver file=./alpine.img
 ```
 
-Let's identify which kernel we are using now, it will be useful later for comparison
+Let's identify which kernel this machine is using now
 ```bash
 [inside alpine vm shell] $ uname -r
 5.15.32-0-lts
@@ -137,12 +137,12 @@ identify again the kernel, this is our custom version 🥳
 ## Step3: Make a change
 This is the purpose of my kernel patch, but since not everyone has a Telit LN920 modem to test this, let's make instead a dummy change, just for the sake of seeing our changes loaded at runtime.
 
-The target will be the module for _USB Driver for GSM modems_ which is called "option" (needless to say that's a terrible name if you want to google it), located under _/drivers/usb/serial_ folder, and needs to be enabled in the **.config** file.
+The target will be the module **USB Driver for GSM modems** which is called "option" (needless to say that's a terrible name if you want to google it), located under _/drivers/usb/serial_ folder, and needs to be enabled in the **.config** file.
 
 Enabling it might look complex the first time, but it's pretty easy
 
 - Run `$ make menuconfig` to show an **ncurses** based menu.
-- Search - pressing slash ("/") - `CONFIG_USB_SERIAL_OPTION` and press "1" in order to jump to "USB Serial Converter support". Press "m" to select it.
+- Press slash ("/") to search `CONFIG_USB_SERIAL_OPTION` and then press "1" in order to jump to "USB Serial Converter support". Press "m" to select it.
 - Search again `CONFIG_USB_SERIAL_OPTION`, pressing "1" the menu will jump to a different field "USB driver for GSM and CDMA modems". Press "m" to select it.
 - Exit from menuconfig selecting "exit" in the bottom bar.
 
