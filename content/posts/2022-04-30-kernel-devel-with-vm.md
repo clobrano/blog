@@ -1,7 +1,7 @@
 +++ 
 draft = false
-date = 2022-04-21
-publishDate = 2022-04-26
+date = 2022-04-24
+publishDate = 2022-04-24
 title = "Kernel Development with QEMU Virtual Machines"
 description = ""
 slug = "" 
