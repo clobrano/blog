@@ -67,7 +67,7 @@ $ qemu-img create -f qcow2 alpine.img 2G
 $ qemu-system-x86_64 -cdrom alpine-downloaded.iso alpine.img -m 512M -enable-kvm
 
 # Run the newly installed image from the disk
-$ qemu-system-x86_64 -enable-kvm -m 512M -smp 4 -cpu host -driver file=./alpine.img
+$ qemu-system-x86_64 -enable-kvm -m 512M -smp 4 -cpu host -drive file=./alpine.img
 ```
 
 Let's identify which kernel this machine is using now
