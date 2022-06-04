@@ -11,7 +11,7 @@ externalLink = ""
 series = []
 +++
 
-This is an update of [my previous post](/posts/2022-04-30-kernel-devel-with-vm/) about using virtualization to work develop the Linux Kernel, which brings two new points:
+This is an update of [my previous post](/posts/2022-04-30-kernel-devel-with-vm/) about using virtualization to develop the Linux Kernel, which brings two new points:
 
 1. A different way to mount the QEMU image using a QEMU tool in place of guestmount.
 2. USB pass-through, which is fundamental when working with USB drivers.
