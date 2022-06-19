@@ -1,7 +1,7 @@
 baseURL = "https://blog.carlolobrano.com/"
 languageCode = "en-us"
 title = "IT works, for me."
-theme = "hugo-coder"
+theme = "PaperMod"
 summarylength = 10
 enableEmoji = true
 enableRobotsTXT = true
@@ -16,9 +16,16 @@ pygmentscodefencesguesssyntax = true
 [params]
 title = "IT works, for me."
 author = "Carlo Lobrano"
-info = "Blog about Linux, Open Source and Software development"
+description = "Blog about Linux, Open Source and Software development"
 avatarurl = "img/pic.jpg"
-
+defaultTheme = "auto"
+ShowShareButtons = true
+ShowReadingTime = true
+ShowPostNavLinks = true
+ShowBreadCrumbs = true
+ShowCodeCopyButtons = true
+ShowRssButtonInSectionTermList = true
+ShowToc = true
 hidecredits = false
 hidecopyright = false
 
@@ -26,25 +33,33 @@ rtl = false
 math = true
 custom_css = []
 
+[params.homeInfoParams]
+Title = "Hi, Carlo Lobrano here 👋"
+Content = """
+I'm an Italian Software Engineer and Open source enthusiast.
+- 💻 My daily job is on Embedded software, using mostly C/C++, but...
+- 🔧 I like to develop software in other languages too ([Python](https://github.com/clobrano/letsdo), [Golang](https://github.com/clobrano/sendat), and [Bash](https://github.com/clobrano/script-fu)).
+"""
+
 [params.plausibleAnalytics]
 domain = "blog.carlolobrano.com"
 # Default value is plausible.io, overwrite this if you are self-hosting or using a custom domain
 #serverURL = "analytics.example.com"
 
 ## Social links
-[[params.social]]
-name = "LinkedIn"
-icon = "fa fa-2x fa-linkedin"
-weight = 4
-url = "https://www.linkedin.com/in/carlolobrano/"
-
-[[params.social]]
+[[params.socialIcons]]
 name = "Github"
 icon = "fa fa-2x fa-github"
 weight = 1
 url = "https://github.com/clobrano"
 
-[[params.social]]
+[[params.socialIcons]]
+name = "LinkedIn"
+icon = "fa fa-2x fa-linkedin"
+weight = 4
+url = "https://www.linkedin.com/in/carlolobrano/"
+
+[[params.socialIcons]]
 name = "Twitter"
 icon = "fa fa-2x fa-twitter"
 weight = 3
@@ -61,12 +76,6 @@ name = "Posts"
 weight = 200
 identifier = "posts"
 url = "/posts/"
-
-[[menu.main]]
-name = "About"
-weight = 300
-identifier = "about"
-url = "/about/"
 
 [markup]
   [markup.highlight]
