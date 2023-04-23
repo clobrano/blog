@@ -60,6 +60,13 @@ weight = 4
 url = "https://www.linkedin.com/in/carlolobrano/"
 
 [[params.socialIcons]]
+name = "Mastodon"
+icon = "fa fa-2x fa-mastodon"
+weight = 3
+url = "https://fosstodon.org/@clobrano"
+
+
+[[params.socialIcons]]
 name = "Twitter"
 icon = "fa fa-2x fa-twitter"
 weight = 3
