@@ -37,7 +37,7 @@ custom_css = []
 Title = "Hi, Carlo Lobrano here 👋"
 Content = """
 I'm an Italian Software Engineer and Open source enthusiast.
-- 💻 My daily job is on Embedded software, using mostly C/C++, but...
+- 💻 My daily job is on Kubernetes operators, using mostly Golang, but...
 - 🔧 I like to develop software in other languages too ([Python](https://github.com/clobrano/letsdo), [Golang](https://github.com/clobrano/sendat), and [Bash](https://github.com/clobrano/script-fu)).
 """
 
