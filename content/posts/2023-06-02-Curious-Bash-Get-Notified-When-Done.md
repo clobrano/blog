@@ -57,6 +57,8 @@ It seems to be working fine! :smile: Now, let's add some final details.
 query=$1
 pid=$(pgrep "${query}")
 
+[...]
+
 # Read the process' command line
 cmd=$(cat /proc/${pid}/cmdline | sed -e "s/\x00/ /g"; echo)
 echo "Got PID: \"${pid}\" for query: \"${query}\", with cmdline: \"${cmd}\""
@@ -73,6 +75,8 @@ That's it! When your long-running process has started, you can wait for its comp
 ```sh
 when-done.sh make && notify-send "I'm done, master!"
 ```
+
+The full script is available [here](https://github.com/clobrano/script-fu/blob/master/when-done.sh).
 
 ### Bonus
 
