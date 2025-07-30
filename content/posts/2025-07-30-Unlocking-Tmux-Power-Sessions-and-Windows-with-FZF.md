@@ -1,7 +1,7 @@
 ---
 title: "Unlocking Tmux Power: Sessions and Windows with FZF"
 date: 2025-07-30T15:31:10+02:00
-draft: true
+draft: false
 ---
 
 Last week, I made a small change to my tmux configuration. I added some display-popups to show my sessions and windows, using `fzf` for fuzzy finding and a preview feature. At first, I thought this would just be a nice little improvement to my setup.
