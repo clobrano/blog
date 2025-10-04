@@ -1,5 +1,5 @@
 ---
-title: "2025 10 03 Git Conflict Resolution in Neovim Fugitive"
+title: "Git Conflict Resolution in Neovim Fugitive"
 date: 2025-10-03T19:50:43+02:00
 draft: false
 ---
