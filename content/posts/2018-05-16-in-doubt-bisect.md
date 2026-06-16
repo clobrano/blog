@@ -1,7 +1,7 @@
 ---
 date: "2018-05-16T00:00:00Z"
 excerpt: when you don't know where to start to debug
-published: false
+draft: true
 share: true
 tags:
 - debug

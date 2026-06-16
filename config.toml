@@ -6,7 +6,7 @@ summarylength = 10
 enableEmoji = true
 enableRobotsTXT = true
 
-paginate = 20
+pagination.pagerSize = 20
 canonifyurls = true
 
 pygmentsstyle = "bw"
