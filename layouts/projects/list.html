@@ -1,0 +1,39 @@
+{{- define "main" }}
+<header class="page-header">
+  {{- partial "breadcrumbs.html" . }}
+  <h1>{{ .Title }}</h1>
+  {{- if .Description }}
+  <div class="post-description">{{ .Description | markdownify }}</div>
+  {{- end }}
+</header>
+
+<div class="projects-grid">
+  {{- range .Pages }}
+  <article class="post-entry project-card">
+    <header class="entry-header">
+      <h2>{{ .Title }}</h2>
+      {{- if .Params.language }}
+      <span class="project-lang">{{ .Params.language }}</span>
+      {{- end }}
+    </header>
+    {{- if .Description }}
+    <div class="entry-content">
+      <p>{{ .Description }}</p>
+    </div>
+    {{- end }}
+    <footer class="entry-footer project-meta">
+      {{- if .Params.stars }}
+      <span title="Stars">★ {{ .Params.stars }}</span>
+      {{- end }}
+      {{- if .Params.forks }}
+      <span title="Forks">⑂ {{ .Params.forks }}</span>
+      {{- end }}
+      {{- range .Params.topics }}
+      <span class="project-topic">{{ . }}</span>
+      {{- end }}
+    </footer>
+    <a class="entry-link" aria-label="project link to {{ .Title | plainify }}" href="{{ .Permalink }}"></a>
+  </article>
+  {{- end }}
+</div>
+{{- end }}

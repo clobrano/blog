@@ -84,6 +84,12 @@ weight = 200
 identifier = "posts"
 url = "/posts/"
 
+[[menu.main]]
+name = "Projects"
+weight = 300
+identifier = "projects"
+url = "/projects/"
+
 [markup]
   [markup.highlight]
     anchorLineNos = false

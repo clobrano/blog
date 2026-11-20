@@ -1,0 +1,8 @@
+# One repo per line in the format: owner/repo
+# Lines starting with # are ignored
+clobrano/jira-tabbed-tui
+clobrano/cc-watch
+clobrano/ghwatch
+clobrano/frontline.nvim
+clobrano/annotate.nvim
+clobrano/wui

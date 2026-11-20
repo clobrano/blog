@@ -1,0 +1,38 @@
+{{- define "main" }}
+<article class="post-single">
+  <header class="post-header">
+    {{- partial "breadcrumbs.html" . }}
+    <h1 class="post-title">{{ .Title }}</h1>
+    {{- if .Description }}
+    <div class="post-description">{{ .Description }}</div>
+    {{- end }}
+    <div class="post-meta project-stats">
+      {{- if .Params.language }}
+      <span class="project-lang">{{ .Params.language }}</span>
+      {{- end }}
+      {{- if .Params.stars }}
+      <span title="Stars">★ {{ .Params.stars }}</span>
+      {{- end }}
+      {{- if .Params.forks }}
+      <span title="Forks">⑂ {{ .Params.forks }}</span>
+      {{- end }}
+      {{- if .Params.github_url }}
+      <a href="{{ .Params.github_url }}" target="_blank" rel="noopener noreferrer">View on GitHub →</a>
+      {{- end }}
+    </div>
+    {{- if .Params.topics }}
+    <div class="project-topics">
+      {{- range .Params.topics }}
+      <span class="project-topic">{{ . }}</span>
+      {{- end }}
+    </div>
+    {{- end }}
+  </header>
+
+  {{- if .Content }}
+  <div class="post-content md-content">
+    {{- partial "anchored_headings.html" .Content }}
+  </div>
+  {{- end }}
+</article>
+{{- end }}

@@ -7,3 +7,6 @@ post:
 
 serve:
 	hugo server --buildDrafts --buildFuture
+
+fetch:
+	python3 scripts/fetch_github_data.py
