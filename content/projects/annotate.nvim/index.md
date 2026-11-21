@@ -2,6 +2,7 @@
 title: "annotate.nvim"
 description: ""
 date: "2026-11-20T11:24:15Z"
+weight: 5
 github_url: "https://github.com/clobrano/annotate.nvim"
 stars: 1
 forks: 0

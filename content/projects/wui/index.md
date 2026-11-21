@@ -2,6 +2,7 @@
 title: "wui"
 description: ""
 date: "2026-11-08T08:02:09Z"
+weight: 6
 github_url: "https://github.com/clobrano/wui"
 stars: 1
 forks: 1

@@ -69,7 +69,7 @@ def fetch_readme(owner: str, repo: str) -> str:
     return raw
 
 
-def write_project_page(owner: str, repo: str, meta: dict, readme: str):
+def write_project_page(owner: str, repo: str, meta: dict, readme: str, weight: int = 0):
     dest = CONTENT_DIR / repo
     dest.mkdir(parents=True, exist_ok=True)
 
@@ -91,6 +91,7 @@ def write_project_page(owner: str, repo: str, meta: dict, readme: str):
 title: "{meta.get('name', repo)}"
 description: "{(meta.get('description') or '').replace('"', "'")}"
 date: "{pushed_at}"
+weight: {weight}
 github_url: "{meta.get('html_url', '')}"
 stars: {meta.get('stargazers_count', 0)}
 forks: {meta.get('forks_count', 0)}
@@ -128,7 +129,7 @@ def main():
         print("No repos found in projects.txt", file=sys.stderr)
         sys.exit(1)
 
-    for owner, repo in repos:
+    for weight, (owner, repo) in enumerate(repos, start=1):
         print(f"Fetching {owner}/{repo}...")
         meta = github_request(f"https://api.github.com/repos/{owner}/{repo}")
         if not meta:
@@ -137,7 +138,7 @@ def main():
         readme = fetch_readme(owner, repo)
         if not readme:
             print(f"  Warning: no README found")
-        write_project_page(owner, repo, meta, readme)
+        write_project_page(owner, repo, meta, readme, weight=weight)
 
     print("Done.")
 

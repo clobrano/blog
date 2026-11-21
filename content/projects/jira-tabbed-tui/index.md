@@ -2,6 +2,7 @@
 title: "jira-tabbed-tui"
 description: ""
 date: "2026-11-16T15:52:19Z"
+weight: 1
 github_url: "https://github.com/clobrano/jira-tabbed-tui"
 stars: 0
 forks: 0

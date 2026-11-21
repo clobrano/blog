@@ -8,7 +8,7 @@
 </header>
 
 <div class="projects-grid">
-  {{- range .Pages }}
+  {{- range .Pages.ByWeight }}
   <article class="post-entry project-card">
     <header class="entry-header">
       <h2>{{ .Title }}</h2>

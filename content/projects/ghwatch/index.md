@@ -2,6 +2,7 @@
 title: "ghwatch"
 description: ""
 date: "2026-11-19T15:37:23Z"
+weight: 3
 github_url: "https://github.com/clobrano/ghwatch"
 stars: 0
 forks: 0

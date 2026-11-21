@@ -2,6 +2,7 @@
 title: "cc-watch"
 description: ""
 date: "2026-11-20T11:07:01Z"
+weight: 2
 github_url: "https://github.com/clobrano/cc-watch"
 stars: 0
 forks: 0

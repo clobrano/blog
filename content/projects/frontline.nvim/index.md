@@ -2,6 +2,7 @@
 title: "frontline.nvim"
 description: ""
 date: "2026-11-15T16:32:54Z"
+weight: 4
 github_url: "https://github.com/clobrano/frontline.nvim"
 stars: 1
 forks: 0
